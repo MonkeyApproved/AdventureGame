@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> Welcome to the 30s! </title>
+	<link href='GameScreen.css' rel='stylesheet'>
+</head>
+
+<body>
+
+<canvas id="canvasFlappy" width="288" height="512"></canvas>
+
+<object class='svgHidden' id='Avatar_ToRight' data='Images/Avatar_ToRight.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='Avatar_ToLeft' data='Images/Avatar_ToLeft.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='Avatar_ToBack' data='Images/Avatar_ToBack.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='Avatar_ToFront' data='Images/Avatar_ToFront.svg' type='image/svg+xml'></object>
+
+<object class='svgHidden' id='timeStories' data='Images/TimeStories.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='map' data='Images/map.svg' type='image/svg+xml'></object>
+
+<object class='svgHidden' id='playhouse0' data='Images/Playhouse_Layer0.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='playhouse1' data='Images/Playhouse_Layer1.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='playhouse2' data='Images/Playhouse_Layer2.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='playhouseWall' data='Images/Playhouse_Wall.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='playhouseDraw' data='Images/Playhouse_Draw.svg' type='image/svg+xml'></object>
+
+<object class='svgHidden' id='item_pencilcase' data='Images/Item_Pencilcase.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='item_notebook' data='Images/Item_Notebook.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='item_fries' data='Images/Item_Fries.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='item_busticket' data='Images/Item_BusTicket.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='item_studentID' data='Images/Item_StudentCard.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='item_choco' data='Images/Item_Choco.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='item_key' data='Images/Item_Key.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='item_icecream' data='Images/Item_Icecream.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='item_money' data='Images/Item_Money.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='item_photoBook' data='Images/Item_PhotoAlbum.svg' type='image/svg+xml'></object>
+
+
+<object class='svgHidden' id='mcDonalds' data='Images/McDonalds.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='busStop' data='Images/busStop.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='library' data='Images/Library.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='center1' data='Images/center.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='center2' data='Images/kiosk.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='lake1' data='Images/lake.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='lake2' data='Images/IceCreamShop.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='christosFlat' data='Images/ChristosFlat.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='ioannasFlat' data='Images/IoannasFlat.svg' type='image/svg+xml'></object>
+
+<object class='svgHidden' id='friesGame' data='Images/FriesGame.svg' type='image/svg+xml'></object>
+<object class='svgHidden' id='icecreamGame' data='Images/IcecreamGame.svg' type='image/svg+xml'></object>
+	
+<div class='screen' id='mainScreen'>
+	<div class = 'content'>
+		<div id='mainScreenBackground'></div>
+		<div id='mainScreenAvatar'>
+			<div id='avatarDiv'></div>
+		</div>
+		<div id='mainScreenForeground'>
+			
+		</div>
+		
+		<div class='newItem' id='newItemAnimation'>
+			<object class='starImage' data='Images/newItem.svg' type='image/svg+xml'></object>
+			<div class='itemSlot' id='newItemTemp'></div>
+		</div>
+	</div>
+</div>
+
+<div class='inventory' id='inventory'>
+	<div class='scrollBox' id='inventorySroll'>
+		<div class='inventoryGrid' id="inventoryGrid"></div>
+		<div class='inventorySelector' id='inventorySelector'></div>
+	</div>
+</div>
+
+<div class='bottomMenu' id='bottomMenu'>
+	<div class='hidden' id='hiddenButtons'>
+		<object class='buttonSVG' id='buttonArrows' data='Images/Button_Arrows.svg' type='image/svg+xml'></object>
+		<object class='buttonSVG' id='buttonSelect' data='Images/Button_Select.svg' type='image/svg+xml'></object>
+		<object class='buttonSVG' id='buttonStart' data='Images/Button_Start.svg' type='image/svg+xml'></object>
+		<object class='buttonSVG' id='buttonX' data='Images/Button_X.svg' type='image/svg+xml'></object>
+		<object class='buttonSVG' id='buttonY' data='Images/Button_Y.svg' type='image/svg+xml'></object>
+		<object class='buttonSVG' id='buttonA' data='Images/Button_A.svg' type='image/svg+xml'></object>
+		<object class='buttonSVG' id='buttonB' data='Images/Button_B.svg' type='image/svg+xml'></object>
+		<object class='buttonSVG' id='buttonL' data='Images/Button_L.svg' type='image/svg+xml'></object>
+		<object class='buttonSVG' id='buttonR' data='Images/Button_R.svg' type='image/svg+xml'></object>
+	</div>
+	
+	<div class='buttonGrid' id='bottomMenuGrid'></div>
+</div>
+
+<div class='littleMap' id='littleMap'></div>
+
+<div class='messageDisplay' id='messageDisplay'>
+	<span class='text' id='messageText'></span>
+</div>
+
+<div class='dialogDisplay' id='dialogBox'></div>
+
+<div class='intro' id='intro'>
+	<div class='startText', id='startText'>--- LOADING ---</div>
+   <div id="fly-in">  
+   	<div><span></span>Happy birthday Christo!!</div>
+   	<div>Καλωσηρθατε <span>στον κοσμο των 30s...</span></div>
+   	<div>Welcome <span>to your 30s...</span></div>
+   	<div>Even though you are chilling enjoying <span> your sourkraut present</span></div>
+   	<div><span>we have been informed</span> by BOB</div>
+   	<div><span>that there has been</span>a quantum time disturbance.</div>
+   	<div>If not fixed<span>it will prevent you</span></div>
+   	<div>from moving to Berlin. <span></span></div>
+   	<div>It seems that<span>there has been</span></div>
+   	<div>a mishap<span>at the grammateia</span></div>
+   	<div>and they think that<span>you failed your last course!</span></div>
+    	
+   	<div><span>What are you waiting for?</span> </div>
+   	<div>Your cubicle is ready<span>to take you back a decade.</span></div>
+   	<div>Make sure you retrace your steps<span></span></div>
+   	<div>And restore the timeline!<span></span></div>
+	 </div>
+	
+	
+</div>
+
+<script type="text/javascript" src="GameScreen.js"></script>
+</body>
+
+
+
+</html>

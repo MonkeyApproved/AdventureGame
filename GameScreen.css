@@ -1,0 +1,545 @@
+*, *::before, *::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/* montserrat-regular - latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/montserrat-v12-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Montserrat Regular'), local('Montserrat-Regular'),
+       url('fonts/montserrat-v12-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/montserrat-v12-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('fonts/montserrat-v12-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('fonts/montserrat-v12-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('fonts/montserrat-v12-latin-regular.svg#Montserrat') format('svg'); /* Legacy iOS */
+}
+
+/* WAIT FOR USER INTERACTION BEFORE INTRO STARTS */
+
+.js-loading *,
+.js-loading *:before,
+.js-loading *:after {
+  animation-play-state: paused !important;
+}
+
+/********** CONTAINER FOR SVG IMAGES ***********/
+
+.svgHidden {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0px;
+	height: 0px;
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+/************ FULLSCREEN FOR INTRO *************/
+
+.intro {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 99;
+   background-color: #111;
+   background-image: radial-gradient(#333, #111);
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   color: #fff;
+   text-align: center;
+   font-weight: 700;
+   overflow: hidden;
+   font-family: 'Montserrat', sans-serif;
+}
+
+.intro .startText {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	width: 100vw;
+	
+	font-size: 10vh;
+	color: white;
+}
+
+#fly-in {
+  font-size: 4em;
+  margin: 40vh auto;
+  height: 20vh; 
+  text-transform: uppercase;
+}
+
+#fly-in span {
+  display: block;
+  font-size: .4em;
+  opacity: .8;
+}
+
+#fly-in div {
+ position: fixed; 
+  margin: 2vh 0;
+  opacity: 0;
+  left: 10vw;
+  width: 80vw;
+  animation: switch 40s linear none;
+}
+
+#fly-in div:nth-child(2) { animation-delay: 4s}
+#fly-in div:nth-child(3) { animation-delay: 8s}
+#fly-in div:nth-child(4) { animation-delay: 12s}
+#fly-in div:nth-child(5) { animation-delay: 16s}
+#fly-in div:nth-child(6) { animation-delay: 20s}
+#fly-in div:nth-child(7) { animation-delay: 24s}
+#fly-in div:nth-child(8) { animation-delay: 28s}
+#fly-in div:nth-child(9) { animation-delay: 32s}
+#fly-in div:nth-child(10) { animation-delay: 36s}
+#fly-in div:nth-child(11) { animation-delay: 40s}
+#fly-in div:nth-child(12) { animation-delay: 44s}
+#fly-in div:nth-child(13) { animation-delay: 48s}
+#fly-in div:nth-child(14) { animation-delay: 52s}
+#fly-in div:nth-child(15) { animation-delay: 56s}
+
+@keyframes switch {
+    0% { opacity: 0;filter: blur(20px); transform:scale(12)}
+    3% { opacity: 1;filter: blur(0); transform:scale(1)}
+    10% { opacity: 1;filter: blur(0); transform:scale(.9)}
+    13% { opacity: 0;filter: blur(10px); transform:scale(.1)}
+    80% { opacity: 0}
+    100% { opacity: 0}
+}
+
+/************ MAIN SCREEN TO SHOW LOCATIONS ********/
+
+.screen {
+	position: absolute;
+	
+	top: 0;
+	left: 0;
+	width: 70vw;
+	height: 80vh;
+	border: black solid 1vw;
+	background-color: black;
+	
+}
+
+.screen .content {
+	position: relative;
+	background-color: #333;
+	top: calc((80vh - 54.4vw) / 2);
+	left: 0;
+	width: 68vw;
+	height: 54.4vw;
+	overflow: hidden;
+}
+
+@media screen and (min-aspect-ratio: 100/70) {
+	.screen .content {
+		top: 0;
+		height: 78vh;
+		width: 97.5vh;
+		left: calc((70vw - 97.5vh) / 2);
+	}
+}
+
+.screen #loading {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	font-size: 10vh;
+	font-family: Montserrat;
+	text-align: center;
+	color: white;
+}
+
+.screen #mainScreenBackground,
+.screen #mainScreenForeground {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	
+}
+
+.screen #mainScreenBackground {
+	z-index: 1;
+}
+
+.screen #mainScreenAvatar {
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.screen #mainScreenAvatar #avatarDiv {
+	position: absolute;
+}
+
+.screen #mainScreenForeground {
+	z-index: 3;
+}
+
+.screenImage {
+	position: absolute;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+/******* NEW ITEM ANIMATION **********************/
+
+.newItem {
+	position: relative;
+	top: 25%;
+	left: 25%;
+	width: 50%;
+	height: 50%;
+	z-index: 99;
+	transition: all 2s ease;
+}
+
+.newItem .starImage {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.newItem .itemSlot {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	max-width: 30%;
+	max-height: 30%;
+}
+
+/******* BOTTOM MENU FOR INSTRUCTIONS ************/
+
+.bottomMenu {
+	position: absolute;
+	top: 80vh;
+	left: 0;
+	width: 70vw;
+	height: 20vh;
+	border: black solid 1vh;
+	background-color: #333;
+}
+
+.buttonSVG {
+	width: 5vh;
+	height: 5vh;
+}
+
+.buttonGrid {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: grid;
+	padding: 1.5vh;
+	grid-template-columns: 5vh 1fr 5vh 1fr;
+	grid-template-rows: 5vh 5vh 5vh;
+}
+
+.instructionText {
+	line-height: 5vh;
+	font-size: 4vh;
+	font-family: Montserrat;
+	color: white;
+	padding-left: 3vh;
+}
+
+/************** INVENTORY *******************/
+
+.inventory {
+	position: absolute;
+	top: 0;
+	left: 70vw;
+	width: 30vw;
+	height: 80vh;
+	border: black solid 1vw;
+	background-image: linear-gradient(to right, #555 0vw, #555 27.5vw, black 27.5vw, black 30vw);
+	background-color: #555;
+	overflow: hidden;
+}
+
+.inventory .scrollBox {
+	position: relative;
+}
+
+.inventory .item {
+	max-width: 12.5vw;
+	max-height: 12.5vw;
+}
+
+.inventoryGrid {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 28vw;
+	
+	background-image: linear-gradient(to right, #333 0vw, #333 1vw, transparent 1vw, transparent 12.5vw),
+		linear-gradient(to bottom, #333 0vw, #333 1vw, transparent 1vw, transparent 12.5vw);
+	background-size: 13.5vw 13.5vw;
+	
+	display: grid;
+	place-items: center center;
+	grid-gap: 1vw;
+	padding: 1vw;
+	grid-template-columns: 12.5vw 12.5vw;
+	grid-template-rows: repeat(30, 12.5vw);
+}
+
+.inventorySelector {
+	position: absolute;
+	border: yellow solid 1vw;
+	top: 0;
+	left: 0;
+	width: 14.5vw;
+	height: 14.5vw;
+}
+
+/******** BOTTOM RIGHT CORNER ELEMENT *******/
+
+.littleMap {
+	position: absolute;
+	top: 80vh;
+	left: 70vw;
+	width: 30vw;
+	height: 20vh;
+	border: black solid 1vw;
+	background-color: #333;
+}
+
+/************** MESSAGE & DIALOG DISPLAY *******/
+
+.messageDisplay {
+	position: absolute;
+	padding: 1vh;
+	left: 10vw;
+	top: 10vh;
+	width: 50vw;
+	background-color: #666699;
+	border: white solid 5px;
+	z-index: 90;
+}
+
+.messageDisplay .text {
+	width: auto;
+	line-height: 5vh;
+	font-size: 4vh;
+	font-family: Montserrat;
+	color: white;
+	border-right: white solid 3px;
+}
+
+.dialogDisplay {
+	position: absolute;
+	margin: auto;
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	background-color: #333388;
+	overflow:hidden;
+	transition: 1.5s all;
+	padding: 0.5vh;
+	width: 50vw;
+	left: 10vw;
+	top: 10vh;
+	opacity: 0;
+	z-index: 90;
+}
+
+.dialogDisplay .question,
+.dialogDisplay .dialogText {
+	padding-left: 1vh;
+	padding-right: 1vh;
+	font-size: 4vh;
+	font-family: Montserrat;
+	color: white;
+	background-color: #5555AA;
+}
+
+.messageDisplay .text.playhouse:before,
+.dialogDisplay .dialogText.playhouse:before {
+	content: 'Customer: ';
+	color: red;
+}
+
+.messageDisplay .text.library:before,
+.dialogDisplay .question.library:before,
+.dialogDisplay .dialogText.library:before {
+	content: 'Librarian: ';
+	color: red;
+}
+
+.messageDisplay .text.icecream:before,
+.dialogDisplay .dialogText.icecream:before {
+	content: 'Icecream lady: ';
+	color: red;
+}
+
+.messageDisplay .text.ioannasFlat:before,
+.dialogDisplay .dialogText.ioannasFlat:before {
+	content: 'Ioanna: ';
+	color: red;
+}
+
+.messageDisplay .text.kiosk:before,
+.dialogDisplay .dialogText.kiosk:before {
+	content: 'Kiosk guy: ';
+	color: red;
+}
+
+.messageDisplay .text.christo:before,
+.dialogDisplay .dialogText.christo:before {
+	content: 'You: ';
+	color: red;
+}
+
+.messageDisplay .text.vaggelis:before,
+.dialogDisplay .dialogText.vaggelis:before {
+	content: 'Vaggelis (shouting from the little room): ';
+	color: red;
+}
+
+.messageDisplay .text.bus:before,
+.dialogDisplay .dialogText.bus:before {
+	content: 'Bus driver: ';
+	color: red;
+}
+
+.messageDisplay .text.mcDonalds:before,
+.dialogDisplay .dialogText.mcDonalds:before {
+	content: 'Cashier: ';
+	color: red;
+}
+
+.dialogDisplay .quizAnswers,
+.dialogDisplay .dialogAnswers {
+	padding-left: 1vh;
+	padding-right: 1vh;
+	padding-top: 1vh;
+	font-size: 3.2vh;
+	font-family: Montserrat;
+	color: white;
+	background-color: #6666CC;
+}
+
+.dialogDisplay .dialogAnswers.selected {
+	color: yellow;
+}
+
+.dialogDisplay .dialogAnswers:before {
+	content: '- ';
+}
+
+.dialogDisplay .quizAnswers.selected {
+	color: yellow;
+}
+
+/************** CREATE KEYBOARD ***************/
+
+.keyboard{
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(10, 1fr);
+	z-index: 15;
+
+
+    position: absolute;
+    bottom: 25vh;
+	width: 50vw;
+	left: 10vw;
+	height: 15vw;
+    background: #fff;
+}
+
+.keyboard .key {
+    background: #333;
+    color: white;
+    font-size: 4vw;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0.1vw;
+
+    
+}
+
+.keyboard .key.selected{ 
+	background: red;
+}
+
+
+/************** PLAYHOUSE GAME ***************/
+
+.playhouseWallSelector {
+	position: absolute;
+	border: purple solid 0.5vh;
+	z-index: 10;
+}
+
+.hangmanGameDisplay {
+	position: absolute;
+	top: 10vh;
+	left: 10vw;
+	width: 18vw;
+	z-index: 15;
+	filter: blur(6px);
+}
+
+.answerDisplay {
+	background: none;
+	color: white;
+    position: absolute;
+	bottom: calc(27vh + 15vw);
+	width: 70vw;
+	left: 0;
+	justify-content: center;
+	font-size: 3vw;
+	text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.answerDisplay .letterInput {
+    width: 3.1vw;
+    height: 3.1vw;
+    border-bottom: 3px solid white;
+	margin: 0.2vw;
+}
+.answerDisplay .letterInputSpace {
+    width: 3.1vw;
+    height: 3.1vw;
+	margin: 0.2vw;
+}
+
+.hangmanSvg {
+    position: absolute;
+	left: 30vw;
+	top: 5vh;
+    width: 40vh;
+    height: 30vh;
+    stroke: #fff;
+    stroke-width: 3px;
+	fill: none;
+	transform: scaleX(-1);
+}
